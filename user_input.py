@@ -8,8 +8,9 @@ def user_input(easting, northing):
     #  The mbr has been set to the limits of the raster file as there is no error when clipping the raster file using
     #  rasterio's mask function.
     mbr = Polygon([(425000, 75000), (425000, 100000), (470000, 100000), (470000, 75000)])
-    shapefile = gpd.read_file(r"C:\Users\GTX1650\OneDrive\Documents\UCL - Hydrographic Survey\CEGE0096 - "
-                              r"Geospatial programming\Coursework 2\Emergency Planning for Floods\Material\shape\isle_of_wight.shx")
+    shapefile = gpd.read_file(r"C:\Users\GTX1650\OneDrive\Documents\UCL - Hydrographic Survey\CEGE0096 - Geospatial "
+                              r"programming\Coursework 2\Emergency Planning for Floods\flood-emergency-planning-falcon"
+                              r"\Material\shape\isle_of_wight.shx")
 
     #  The mbr here is unnecessary since there is no need to cater for a 5km buffer. More important is to ensure
     #  that the point lies on land.

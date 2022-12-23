@@ -1,1 +1,26 @@
+import json
+import rtree
+import shapely.geometry
 
+# Open and load the JSON file
+with open("/Users/yyy/Desktop/solent_itn.json", "r") as f:
+    data = json.load(f)
+
+# Create an R-Tree index
+idx = rtree.index.Index()
+
+# Insert all ITN points into the index
+for link_id, link in data["roadlinks"].items():
+    coords = link["coords"]
+    for i, coord in enumerate(coords):
+        idx.insert(i, shapely.geometry.Point(coord).bounds)
+
+# Find the nearest ITN point to user_point
+user_point = (460800,85000)
+nearest = list(idx.nearest(shapely.geometry.Point(user_point).bounds, 1))[0]
+print(f"The nearest ITN point to user_point is {data['roadlinks'][link_id]['coords'][nearest]}")
+
+# Find the nearest ITN point to highest_point
+highest_point = (465000,92300)
+nearest = list(idx.nearest(shapely.geometry.Point(highest_point).bounds, 1))[0]
+print(f"The nearest ITN point to highest_point is {data['roadlinks'][link_id]['coords'][nearest]}")

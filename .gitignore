@@ -7,3 +7,5 @@ start_pts.gpkg-wal
 start_pts.gpkg-shm
 start_pts.gpkg
 tt.csv
+.idea
+.DS_Store

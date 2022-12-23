@@ -8,6 +8,8 @@ from rasterio.mask import mask
 #  into the correct coordinate reference system, and saves it as a new file "output_SZ.asc".
 
 def clip_raster_file(easting, northing):
+
+    #  OOP has been used to define the user's location.
     user_location = Point(easting, northing)
     polygon = user_location.buffer(5000)
     dataset = rasterio.open(os.path.join('Material', 'elevation', 'SZ.asc'))

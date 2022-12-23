@@ -24,9 +24,16 @@ from clip_raster_file import clip_raster_file
 
 
 def main():
+
     # user input
-    easting = float(input('Please enter the Easting of your current location: '))
-    northing = float(input('Please enter the Northing of your current location: '))
+    print('Insert user location')
+    while True:
+        try:
+            easting = float(input('Easting: '))
+            northing = float(input('Northing: '))
+            break
+        except ValueError:
+            print('Please enter a number. Try again.')
 
     user_location, is_on_land = user_input(easting, northing)
     if is_on_land:
@@ -37,6 +44,7 @@ def main():
     #  Internal note: This part can be removed. I left it in for easy reference on what the output looks like.
     new_dataset = rasterio.open(os.path.join('Material', 'elevation', 'output_SZ.asc'))
     rasterio.plot.show(new_dataset)
+
 
 if __name__ == '__main__':
     main()
